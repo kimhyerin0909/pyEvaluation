@@ -17,27 +17,36 @@ sex_offence = []
 theft = []
 violence = []
 
-for line in rdr:
-    police.append(line[1])
-    murder.append(line[2])
-    robbery.append(line[3])
-    sex_offence.append(line[4])
-    theft.append(line[5])
-    violence.append(line[6])
+data = pd.read_csv('crimeBusan.csv', encoding='utf-8')
+test = data.groupby('police')['murder'].sum()
+plt.rcParams['font.family'] = "NanumGothic"
 
-police.remove("police")
-murder.remove("murder")
-robbery.remove("robbery")
-sex_offence.remove("sex_offence")
-theft.remove("theft")
-violence.remove("violence")
-
-x = np.arange(15)
-
-plt.title("살인")
-plt.plot(police, murder, color='green', marker='o')
-plt.grid()
+plt.figure(figsize=(8,5))
+plt.bar(test.index, test)
+plt.title('요일에 따른 치킨 주문량 합계')
 plt.show()
+
+# for line in rdr:
+#     police.append(line[1])
+#     murder.append(line[2])
+#     robbery.append(line[3])
+#     sex_offence.append(line[4])
+#     theft.append(line[5])
+#     violence.append(line[6])
+#
+# police.remove("police")
+# murder.remove("murder")
+# robbery.remove("robbery")
+# sex_offence.remove("sex_offence")
+# theft.remove("theft")
+# violence.remove("violence")
+#
+# x = np.arange(15)
+# plt.title("살인")
+# plt.figure(figsize=(19, 10))
+# plt.plot(police, murder, color='green', marker='o')
+# plt.grid()
+# plt.show()
 
 # select = int(input('특정 지역의 5대 범죄 현황을 보고 싶다면 1, 부산 전체의 5대 범죄 현황을 보고 싶다면 2를 입력해주세요.'))
 # name = input('5대 범죄 현황을 알고 싶은 지역의 이름을 입력해주세요. : ')
@@ -106,5 +115,5 @@ plt.show()
 # else:
 #     print("잘 못 입력하셨습니다.")
 
-plt.rc('font', family='NanumGothic')
+
 # f.close()
