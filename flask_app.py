@@ -1,33 +1,3 @@
-# import sys
-# from urllib import request
-# from flask import Flask, render_template
-# from bs4 import BeautifulSoup
-#
-# app = Flask(__name__)
-#
-# # @app.route('/')
-# # def hello():
-# #     return "<h1> Hello World! </h1>"
-#
-# @app.route("/")
-# def home():
-#     return render_template('index.html', subject="안녕하세요. 반갑습니다. 김혜린입니다.")
-#
-# @app.route('/<user>')
-# def hello(user):
-#     return '<h1> hello ' + user
-#
-# @app.route("/about")
-# def about():
-#     return render_template('result.svg', subject="2020 부산 5대 범죄 현황")
-#
-# @app.route("/show1")
-# def show1():
-#     return render_template('img_test1.html', image_file='img/1.jpg')
-#
-# if __name__ == "__main__" :
-#     app.run()
-
 from flask import Flask, render_template
 import sys
 from urllib import request
@@ -76,7 +46,6 @@ def kma():
         # 내부의 city, wf, tmn, tmx, tmEf 태그를 찾아 출력합니다.
         output += "<h3>{}</h3>".format(location.select_one("city").string)
         output += "날씨: {}</br>".format(location.select_one("wf").string)
-        output += "날짜: {}</br>".format(location.select_one("tmEf").string)
         output += "최저/최고 기온: {}/{}".format(location.select_one("tmn").string, location.select_one("tmx").string)
         output += "<hr/>"
         #
